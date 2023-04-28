@@ -1,0 +1,7 @@
+<resources>
+    <string name="default_error_title">Algo ha ido mal</string>
+    <string name="repo_details_error_title">Repo no encontrado</string>
+    <string name="repo_details_error_description">No podemos encontrar el repositorio especificado. Por favor, inténtelo más tarde.</string>
+    <string name="ok_button">OK</string>
+    <string name="repo_list_title">Repos de Github</string>
+</resources>

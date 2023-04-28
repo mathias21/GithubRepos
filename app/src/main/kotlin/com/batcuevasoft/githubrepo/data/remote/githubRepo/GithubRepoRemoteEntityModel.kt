@@ -1,0 +1,108 @@
+package com.batcuevasoft.githubrepo.data.remote.githubRepo
+
+import com.squareup.moshi.Json
+
+data class GithubRepoRemoteEntity(
+    @Json(name = "created_at")
+    val createdAt: String,
+    val description: String,
+    val forks: Int,
+    @Json(name = "forks_count")
+    val forksCount: Int,
+    @Json(name = "full_name")
+    val fullName: String,
+    @Json(name = "archived")
+    val git_commits_url: String,
+    @Json(name = "archived")
+    val git_refs_url: String,
+    @Json(name = "archived")
+    val git_tags_url: String,
+    @Json(name = "archived")
+    val git_url: String,
+    @Json(name = "archived")
+    val has_discussions: Boolean,
+    @Json(name = "archived")
+    val has_downloads: Boolean,
+    @Json(name = "archived")
+    val has_issues: Boolean,
+    @Json(name = "archived")
+    val has_pages: Boolean,
+    @Json(name = "archived")
+    val has_projects: Boolean,
+    @Json(name = "archived")
+    val has_wiki: Boolean,
+    val homepage: Any,
+    @Json(name = "archived")
+    val hooks_url: String,
+    val html_url: String,
+    val id: Int,
+    val is_template: Boolean,
+    val issue_comment_url: String,
+    val issue_events_url: String,
+    val issues_url: String,
+    val keys_url: String,
+    val labels_url: String,
+    val language: String,
+    val languages_url: String,
+    val license: LicenseRemoteEntity,
+    val merges_url: String,
+    val milestones_url: String,
+    val mirror_url: Any,
+    val name: String,
+    val node_id: String,
+    val notifications_url: String,
+    val open_issues: Int,
+    val open_issues_count: Int,
+    val owner: OwnerRemoteEntity,
+    val `private`: Boolean,
+    val pulls_url: String,
+    val pushed_at: String,
+    val releases_url: String,
+    val size: Int,
+    val ssh_url: String,
+    val stargazers_count: Int,
+    val stargazers_url: String,
+    val statuses_url: String,
+    val subscribers_url: String,
+    val subscription_url: String,
+    val svn_url: String,
+    val tags_url: String,
+    val teams_url: String,
+    val topics: List<String>,
+    val trees_url: String,
+    val updated_at: String,
+    val url: String,
+    val visibility: String,
+    val watchers: Int,
+    val watchers_count: Int,
+    val web_commit_signoff_required: Boolean
+)
+
+data class LicenseRemoteEntity(
+    val key: String,
+    val name: String,
+    val node_id: String,
+    val spdx_id: String,
+    val url: String
+)
+
+data class OwnerRemoteEntity(
+    val avatar_url: String,
+    val events_url: String,
+    val followers_url: String,
+    val following_url: String,
+    val gists_url: String,
+    val gravatar_id: String,
+    val html_url: String,
+    val id: Int,
+    val login: String,
+    val node_id: String,
+    val organizations_url: String,
+    val received_events_url: String,
+    val repos_url: String,
+    val site_admin: Boolean,
+    val starred_url: String,
+    val subscriptions_url: String,
+    val type: String,
+    val url: String
+)

@@ -17,6 +17,7 @@ import com.google.accompanist.navigation.animation.composable
 object MainNavigation {
 
     private const val name = "mainNavigation"
+    const val REPO_ID_ARG = "repoId"
 
     fun graph(builder: NavGraphBuilder, controller: NavHostController) {
         builder.navigation(startDestination = Routes.REPO_LIST.routeName, route = name) {
@@ -36,10 +37,30 @@ object MainNavigation {
             ) {
                 RepoListDestination(controller)
             }
+            composable(
+                Routes.REPO_DETAILS.routeName + "/{$REPO_ID_ARG}",
+                arguments = listOf(navArgument(REPO_ID_ARG) { type = NavType.LongType }),
+                enterTransition = {
+                    slideInHorizontally(initialOffsetX = { -1000 })
+                }, exitTransition = {
+                    slideOutHorizontally(targetOffsetX = { -1000 })
+                },
+                popEnterTransition = {
+                    slideInHorizontally(initialOffsetX = { -1000 })
+                },
+                popExitTransition = {
+                    slideOutHorizontally(targetOffsetX = { 1000 })
+                }
+            ) {
+                RepoDetailsDestination(controller)
+            }
         }
     }
 }
 
+private fun NavHostController.navigateToRepoDetails(repoId: Long) {
+    navigate(Routes.REPO_DETAILS.name + "/$repoId")
+}
 
 @Composable
 private fun RepoListDestination(controller: NavHostController) {
@@ -48,7 +69,16 @@ private fun RepoListDestination(controller: NavHostController) {
     }
 }
 
+@Composable
+private fun RepoDetailsDestination(controller: NavHostController) {
+    GithubRepoDetailsScreen(
+        onBackPressed = {
+            controller.popBackStack()
+        }
+    )
+}
 
 private enum class Routes(val routeName: String) {
     REPO_LIST("repoList"),
+    REPO_DETAILS("repoDetails");
 }

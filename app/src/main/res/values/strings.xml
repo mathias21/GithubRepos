@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">GithubRepo</string>
+    <string name="default_error_title">Something went wrong</string>
+    <string name="repo_details_error_title">Repo not found</string>
+    <string name="repo_details_error_description">We cannot find the specified repository. Please try again later.</string>
+    <string name="ok_button" translatable="false">OK</string>
+    <string name="repo_list_title">Github Repos</string>
+</resources>
