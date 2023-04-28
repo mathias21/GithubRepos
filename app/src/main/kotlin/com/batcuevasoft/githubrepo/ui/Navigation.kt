@@ -1,0 +1,54 @@
+package com.batcuevasoft.githubrepo.ui
+
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
+import androidx.navigation.navigation
+import com.batcuevasoft.githubrepo.ui.details.GithubRepoDetailsScreen
+import com.batcuevasoft.githubrepo.ui.main.GithubRepoListScreen
+import com.google.accompanist.navigation.animation.composable
+
+@OptIn(ExperimentalAnimationApi::class)
+object MainNavigation {
+
+    private const val name = "mainNavigation"
+
+    fun graph(builder: NavGraphBuilder, controller: NavHostController) {
+        builder.navigation(startDestination = Routes.REPO_LIST.routeName, route = name) {
+            composable(
+                Routes.REPO_LIST.routeName,
+                enterTransition = {
+                    slideInHorizontally(initialOffsetX = { -1000 })
+                }, exitTransition = {
+                    slideOutHorizontally(targetOffsetX = { -1000 })
+                },
+                popEnterTransition = {
+                    slideInHorizontally(initialOffsetX = { -1000 })
+                },
+                popExitTransition = {
+                    slideOutHorizontally(targetOffsetX = { 1000 })
+                }
+            ) {
+                RepoListDestination(controller)
+            }
+        }
+    }
+}
+
+
+@Composable
+private fun RepoListDestination(controller: NavHostController) {
+    GithubRepoListScreen {
+        controller.popBackStack()
+    }
+}
+
+
+private enum class Routes(val routeName: String) {
+    REPO_LIST("repoList"),
+}
