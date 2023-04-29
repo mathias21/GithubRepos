@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -36,11 +37,13 @@ fun GithubRepoChipList(
 ) {
 
     LazyRow(
-        modifier = modifier,
+        modifier = modifier
+            .wrapContentHeight(),
         horizontalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         item {
             AssistChip(
+                modifier = Modifier.height(32.dp),
                 trailingIcon = {
                     Icon(
                         Icons.Filled.Star,
@@ -65,6 +68,7 @@ fun GithubRepoChipList(
 
         item {
             AssistChip(
+                modifier = Modifier.height(32.dp),
                 trailingIcon = {
                     Image(
                         painter = painterResource(id = R.drawable.fork_icon),
