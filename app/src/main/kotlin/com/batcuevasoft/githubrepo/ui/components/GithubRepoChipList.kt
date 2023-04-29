@@ -8,9 +8,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.material3.ChipBorder
+import androidx.compose.material3.ChipColors
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SelectableChipBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.batcuevasoft.githubrepo.R
 import com.batcuevasoft.githubrepo.ui.theme.GithubRepoTheme
+import com.batcuevasoft.githubrepo.ui.theme.starYellow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,6 +32,7 @@ fun GithubRepoChipList(
     modifier: Modifier = Modifier,
     starCount: Int,
     forkCount: Int,
+    borderColor: Color = MaterialTheme.colorScheme.onSurface
 ) {
 
     LazyRow(
@@ -39,7 +45,7 @@ fun GithubRepoChipList(
                     Icon(
                         Icons.Filled.Star,
                         modifier = Modifier.height(16.dp),
-                        tint = Color.Yellow,
+                        tint = starYellow,
                         contentDescription = "icon"
                     )
                 },
@@ -52,7 +58,8 @@ fun GithubRepoChipList(
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.onSurface
                     )
-                }
+                },
+                border = AssistChipDefaults.assistChipBorder(borderColor = borderColor)
             )
         }
 
@@ -75,7 +82,8 @@ fun GithubRepoChipList(
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.onSurface
                     )
-                }
+                },
+                border = AssistChipDefaults.assistChipBorder(borderColor = borderColor)
             )
         }
     }

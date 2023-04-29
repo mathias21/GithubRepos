@@ -2,7 +2,7 @@ package com.batcuevasoft.githubrepo.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val md_theme_light_primary = Color(0xFF865300)
+val md_theme_light_primary = Color(0xFF703FCA)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFFFDDB9)
 val md_theme_light_onPrimaryContainer = Color(0xFF2B1700)
@@ -20,10 +20,10 @@ val md_theme_light_onError = Color(0xFFFFFFFF)
 val md_theme_light_onErrorContainer = Color(0xFF410002)
 val md_theme_light_background = Color(0xFF3A9CD8)
 val md_theme_light_onBackground = Color(0xFFFFFFFF)
-val md_theme_light_surface = Color(0xFFFFA310)
-val md_theme_light_onSurface = Color(0xFF8252DD)
+val md_theme_light_surface = Color(0xFFFFFFFF)
+val md_theme_light_onSurface = Color(0xFF262626)
 val md_theme_light_surfaceVariant = Color(0xFFF1E0D0)
-val md_theme_light_onSurfaceVariant = Color(0xFF504539)
+val md_theme_light_onSurfaceVariant = Color(0xFF5F5C62)
 val md_theme_light_outline = Color(0xFF827568)
 val md_theme_light_inverseOnSurface = Color(0xFFE7F2FF)
 val md_theme_light_inverseSurface = Color(0xFF003351)
@@ -64,5 +64,6 @@ val md_theme_dark_surfaceTint = Color(0xFFFFB962)
 val md_theme_dark_outlineVariant = Color(0xFF504539)
 val md_theme_dark_scrim = Color(0xFF000000)
 
+val starYellow = Color(0xFFFFC107)
 
 val seed = Color(0xFFFFA310)

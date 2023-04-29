@@ -16,19 +16,22 @@ data class GithubRepoEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val name: String,
+    val fullName: String,
     val description: String,
     val stars: Int,
     val lastUpdateTimestamp: Long,
     val repoUrl: String,
     val forkCount: Int,
     val authorName: String,
-    val avatarUrl: String? = null
+    val avatarUrl: String? = null,
+    val language: String? = null
 ) {
     fun toGithubRepo(): GithubRepo {
         val daysSinceUpdate = Interval(lastUpdateTimestamp, Date().time).toDuration().standardDays.toInt()
         return GithubRepo(
             id = id,
             name = name,
+            fullName = fullName,
             description = description,
             starCount = stars,
             lastUpdateDate = Date(lastUpdateTimestamp),
@@ -38,7 +41,8 @@ data class GithubRepoEntity(
             owner = RepoOwner(
                 authorName,
                 avatarUrl
-            )
+            ),
+            language = language
         )
     }
 }

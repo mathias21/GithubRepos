@@ -8,6 +8,7 @@ import com.batcuevasoft.githubrepo.core.util.DispatcherProvider
 import com.batcuevasoft.githubrepo.core.util.stateIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -18,8 +19,9 @@ class GithubRepoListViewModel @Inject constructor(
 ) : ViewModel() {
 
     val githubRepoDetailsState: StateFlow<GithubRepoListState> = githubRepoRepository.githubRepoListFlow.map {
-        GithubRepoListState.DataLoaded(it)
-    }.stateIn(viewModelScope, GithubRepoListState.Loading)
+        GithubRepoListState.DataLoaded(it.sortedByDescending { it.starCount })
+    }.flowOn(dispatcherProvider.io)
+        .stateIn(viewModelScope, GithubRepoListState.Loading)
 
     sealed interface GithubRepoListState {
         object Loading : GithubRepoListState

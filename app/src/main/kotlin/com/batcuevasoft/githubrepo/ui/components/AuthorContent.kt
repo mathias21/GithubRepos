@@ -3,7 +3,6 @@ package com.batcuevasoft.githubrepo.ui.components
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -11,8 +10,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,23 +30,18 @@ fun AuthorContent(
     Row(
         Modifier
             .height(24.dp)
-            .fillMaxWidth()) {
-        Card(
-            modifier = Modifier.size(24.dp),
-            shape = CircleShape,
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onSurface),
+            .fillMaxWidth()
+    ) {
 
-            ) {
-            AsyncImage(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(2.dp)
-                    .clip(CircleShape),
-                model = avatarUrl ?: R.drawable.ic_default_avatar_placeholder,
-                contentDescription = "",
-                contentScale = ContentScale.Crop
-            )
-        }
+        AsyncImage(
+            modifier = Modifier
+                .size(24.dp)
+                .padding(2.dp)
+                .clip(CircleShape),
+            model = avatarUrl ?: R.drawable.ic_default_avatar_placeholder,
+            contentDescription = "",
+            contentScale = ContentScale.Crop
+        )
 
         Box(
             Modifier
@@ -61,7 +53,7 @@ fun AuthorContent(
                 modifier = Modifier.padding(start = 8.dp),
                 text = authorName,
                 style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -27,11 +28,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             val systemUiController = rememberSystemUiController()
             val animatedController = rememberAnimatedNavController()
+            val isDarkMode = isSystemInDarkTheme()
 
             SideEffect {
                 systemUiController.setSystemBarsColor(
                     color = Color.Transparent,
-                    darkIcons = false
+                    darkIcons = !isDarkMode
                 )
             }
 

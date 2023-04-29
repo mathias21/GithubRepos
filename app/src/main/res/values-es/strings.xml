@@ -4,4 +4,6 @@
     <string name="repo_details_error_description">No podemos encontrar el repositorio especificado. Por favor, inténtelo más tarde.</string>
     <string name="ok_button">OK</string>
     <string name="repo_list_title">Repos de Github</string>
+    <string name="go_to_repository_url_button">Ir al repo</string>
+    <string name="unknown_language">Idioma desconocido</string>
 </resources>

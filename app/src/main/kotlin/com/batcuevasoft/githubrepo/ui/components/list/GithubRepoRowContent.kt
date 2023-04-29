@@ -7,12 +7,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
@@ -21,7 +23,7 @@ import com.batcuevasoft.githubrepo.core.githubRepo.GithubRepo
 import com.batcuevasoft.githubrepo.core.githubRepo.RepoOwner
 import com.batcuevasoft.githubrepo.ui.components.AuthorContent
 import com.batcuevasoft.githubrepo.ui.components.GithubRepoChipList
-import com.batcuevasoft.githubrepo.ui.components.LastUpdateAndUrlContent
+import com.batcuevasoft.githubrepo.ui.components.LastUpdateAndFullNameContent
 import com.batcuevasoft.githubrepo.ui.theme.GithubRepoTheme
 import java.util.Date
 
@@ -34,9 +36,11 @@ fun GithubRepoRowContent(
 ) {
 
     Card(
+        shape = RoundedCornerShape(8.dp),
         modifier = modifier
             .fillMaxWidth()
-            .height(172.dp)
+            .height(180.dp)
+            .clip(RoundedCornerShape(8.dp))
             .clickable {
                 onClick()
             },
@@ -63,10 +67,10 @@ fun GithubRepoRowContent(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            LastUpdateAndUrlContent(
+            LastUpdateAndFullNameContent(
                 updateDate = githubRepo.lastUpdateDate.formatToDateString(),
                 daysSinceUpdate = githubRepo.daysSinceUpdate,
-                url = githubRepo.repoUrl
+                fullName = githubRepo.fullName
             )
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -75,7 +79,6 @@ fun GithubRepoRowContent(
                 starCount = githubRepo.starCount,
                 forkCount = githubRepo.forkCount
             )
-
         }
     }
 }
@@ -90,6 +93,7 @@ private fun GithubRepoRowContentPreview(
             githubRepo = GithubRepo(
                 id = 12,
                 name = "My lovely Repo",
+                fullName = "repos/fullname",
                 description = description,
                 starCount = 160,
                 lastUpdateDate = Date(),
@@ -99,7 +103,8 @@ private fun GithubRepoRowContentPreview(
                 RepoOwner(
                     "mathias",
                     null
-                )
+                ),
+                language = "Kotlin"
             ),
             onClick = {}
         )

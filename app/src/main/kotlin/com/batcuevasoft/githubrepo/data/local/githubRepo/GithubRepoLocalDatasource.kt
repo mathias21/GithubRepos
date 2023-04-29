@@ -9,13 +9,17 @@ interface GithubRepoLocalDatasource {
     val flow: Flow<List<GithubRepoEntity>>
 
     suspend fun insertGithubRepoEntity(
+        id: Long = 0L,
         name: String,
+        fullName: String,
         description: String,
         stars: Int,
         repoUrl: String,
         forkCount: Int,
+        lastUpdateTime: Long,
         authorName: String,
-        avatarUrl: String? = null
+        avatarUrl: String? = null,
+        language: String? = null
     ): GithubRepoEntity
 
     suspend fun getGithubRepoEntityById(id: Long): GithubRepoEntity?
@@ -31,23 +35,30 @@ class GithubRepoLocalDatasourceImpl @Inject constructor(
     override val flow: Flow<List<GithubRepoEntity>> = dao.allFlow()
 
     override suspend fun insertGithubRepoEntity(
+        id: Long,
         name: String,
+        fullName: String,
         description: String,
         stars: Int,
         repoUrl: String,
         forkCount: Int,
+        lastUpdateTime: Long,
         authorName: String,
         avatarUrl: String?,
+        language: String?
     ): GithubRepoEntity {
         val entity = GithubRepoEntity(
+            id = id,
             name = name,
+            fullName = fullName,
             description = description,
             stars = stars,
-            lastUpdateTimestamp = Date().time,
+            lastUpdateTimestamp = lastUpdateTime,
             repoUrl = repoUrl,
             forkCount = forkCount,
             authorName = authorName,
-            avatarUrl = avatarUrl
+            avatarUrl = avatarUrl,
+            language = language
         )
         val id = dao.insertGithubRepoEntity(entity)
         return entity.copy(id = id)

@@ -41,9 +41,9 @@ object MainNavigation {
                 Routes.REPO_DETAILS.routeName + "/{$REPO_ID_ARG}",
                 arguments = listOf(navArgument(REPO_ID_ARG) { type = NavType.LongType }),
                 enterTransition = {
-                    slideInHorizontally(initialOffsetX = { -1000 })
+                    slideInHorizontally(initialOffsetX = { 1000 })
                 }, exitTransition = {
-                    slideOutHorizontally(targetOffsetX = { -1000 })
+                    slideOutHorizontally(targetOffsetX = { 1000 })
                 },
                 popEnterTransition = {
                     slideInHorizontally(initialOffsetX = { -1000 })
@@ -59,14 +59,17 @@ object MainNavigation {
 }
 
 private fun NavHostController.navigateToRepoDetails(repoId: Long) {
-    navigate(Routes.REPO_DETAILS.name + "/$repoId")
+    navigate(Routes.REPO_DETAILS.routeName + "/$repoId")
 }
 
 @Composable
 private fun RepoListDestination(controller: NavHostController) {
-    GithubRepoListScreen {
+    GithubRepoListScreen(
+        onBackPressed = {
         controller.popBackStack()
-    }
+    }, onRepoClick = {
+        controller.navigateToRepoDetails(it)
+    })
 }
 
 @Composable

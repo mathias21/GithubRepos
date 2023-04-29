@@ -18,15 +18,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.batcuevasoft.githubrepo.ui.theme.GithubRepoTheme
 
 @Composable
-fun LastUpdateAndUrlContent(
+fun LastUpdateAndFullNameContent(
     updateDate: String,
     daysSinceUpdate: Int,
-    url: String,
+    fullName: String,
 ) {
 
     Row(
@@ -83,9 +84,11 @@ fun LastUpdateAndUrlContent(
             contentAlignment = Alignment.CenterStart
         ) {
             Text(
-                text = url,
+                text = fullName,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
@@ -95,7 +98,7 @@ fun LastUpdateAndUrlContent(
 @Composable
 fun LastUpdateAndUrlContentPreview() {
     GithubRepoTheme {
-        LastUpdateAndUrlContent(
+        LastUpdateAndFullNameContent(
             "January 1, 2021",
             20,
             "mathias21/ReusableRecycler"
