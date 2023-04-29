@@ -27,6 +27,7 @@ import Dependencies.Versions.retrofitVersion
 import Dependencies.Versions.roomVersion
 import Dependencies.Versions.securityCryptoVersion
 import Dependencies.Versions.timberVersion
+import Dependencies.Versions.turbineVersion
 
 object Dependencies {
 
@@ -99,6 +100,7 @@ object Dependencies {
         val junit4Version = "4.13.2"
         val androidTestJunitVersion = "1.1.4"
         val espressoVersion = "3.5.0"
+        val turbineVersion = "0.12.3"
 
         // TOOLS
 
@@ -206,6 +208,7 @@ object Dependencies {
     val androidTestJunit = "androidx.test.ext:junit:$androidTestJunitVersion"
     val junit4 = "junit:junit:$junit4Version"
     val espressoCore = "androidx.test.espresso:espresso-core:$espressoVersion"
+    val turbine = "app.cash.turbine:turbine:$turbineVersion"
 
     // Mockito
     val mockitoAndroid = "org.mockito:mockito-android:$mockitoCoreVersion"

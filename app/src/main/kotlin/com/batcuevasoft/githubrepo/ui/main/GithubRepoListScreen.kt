@@ -2,6 +2,7 @@ package com.batcuevasoft.githubrepo.ui.main
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -14,6 +15,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -66,18 +68,43 @@ fun GithubRepoListScreen(
                 }
 
                 is DataLoaded -> {
-                    items(currentState.githubRepoList, key = { it.id }) {
-                        GithubRepoRowContent(
-                            githubRepo = it
-                        ) {
-                            onRepoClick(it.id)
+                    if(currentState.githubRepoList.isEmpty()) {
+                        item {
+                            Spacer(modifier = Modifier.height(32.dp))
+                            EmptyRepoListContent()
+                        }
+                    } else {
+                        items(currentState.githubRepoList, key = { it.id }) {
+                            GithubRepoRowContent(
+                                githubRepo = it
+                            ) {
+                                onRepoClick(it.id)
+                            }
                         }
                     }
+
                     item {
                         Spacer(modifier = Modifier.height(32.dp + paddingValues.calculateBottomPadding()))
                     }
                 }
             }
         }
+    }
+}
+
+@Composable
+fun EmptyRepoListContent(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(id = R.string.empty_repo_list_title),
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onBackground
+        )
     }
 }
