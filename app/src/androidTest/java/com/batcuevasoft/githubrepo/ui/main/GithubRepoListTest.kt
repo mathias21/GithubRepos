@@ -22,6 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Rule
 import org.junit.Test
+import com.batcuevasoft.githubrepo.R
 
 @UninstallModules(GithubRepoAppModule.BindsModule::class)
 @HiltAndroidTest
@@ -65,6 +66,7 @@ class GithubRepoListTest {
             }
         }
 
+        val titleLabel = composeTestRule.activity.getString(R.string.repo_list_title)
         val repoId = 123L
         val repoName = "MyLovelyRepo"
 
@@ -73,7 +75,7 @@ class GithubRepoListTest {
             GithubRepoInstrumentation.getGithubRepo()
         )
 
-        composeTestRule.onNodeWithText("Github Repos").assertIsDisplayed()
+        composeTestRule.onNodeWithText(titleLabel).assertIsDisplayed()
         composeTestRule.onNodeWithText(repoName).performClick()
         assert(isRepoClickId == repoId)
     }
@@ -92,7 +94,10 @@ class GithubRepoListTest {
             }
         }
 
-        composeTestRule.onNodeWithText("Github Repos").assertIsDisplayed()
-        composeTestRule.onNodeWithText("No Repos found").assertIsDisplayed()
+        val titleLabel = composeTestRule.activity.getString(R.string.repo_list_title)
+        val noReposFound = composeTestRule.activity.getString(R.string.empty_repo_list_title)
+
+        composeTestRule.onNodeWithText(titleLabel).assertIsDisplayed()
+        composeTestRule.onNodeWithText(noReposFound).assertIsDisplayed()
     }
 }
