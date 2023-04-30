@@ -42,8 +42,6 @@ android {
         jvmTarget = "1.8"
     }
 
-    // This version (1.0.5) of the Compose Compiler requires Kotlin version 1.5.31
-    // but you appear to be using Kotlin version 1.7.20 which is not known to be compatible.
     composeOptions {
         kotlinCompilerExtensionVersion = Dependencies.Versions.composeCompiler
     }
@@ -59,7 +57,7 @@ android {
 
 dependencies {
 
-    implementation(Dependencies.kotlinKtx)
+    implementation(Dependencies.androidCoreKtx)
     implementation(Dependencies.appCompact)
 
     // Lifecycle
@@ -114,6 +112,11 @@ dependencies {
 
     // Testing
     testImplementation(Dependencies.junit4)
+    testImplementation(Dependencies.turbine)
+    testImplementation(Dependencies.assertK)
+    testImplementation(Dependencies.coroutinesTest)
+    testImplementation(Dependencies.mockitoCore)
+    testImplementation(Dependencies.mockitoKotlin)
 
     // Instrumented tests
     androidTestImplementation(Dependencies.androidTestJunit)

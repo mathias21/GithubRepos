@@ -1,18 +1,20 @@
 import Dependencies.Versions.androidTestJunitVersion
 import Dependencies.Versions.appCompactVersion
+import Dependencies.Versions.archCoreTestingVersion
+import Dependencies.Versions.assertKVersion
 import Dependencies.Versions.coilComposeVersion
 import Dependencies.Versions.composeAccompanistNavigationAnimationVersion
 import Dependencies.Versions.composeAccompanistVersion
 import Dependencies.Versions.composeActivityVersion
 import Dependencies.Versions.composeConstraintLayoutVersion
 import Dependencies.Versions.composeVersion
+import Dependencies.Versions.coroutinesTestVersion
 import Dependencies.Versions.espressoVersion
 import Dependencies.Versions.hiltNavigationComposeVersion
 import Dependencies.Versions.hiltVersion
 import Dependencies.Versions.httpInterceptorVersion
-import Dependencies.Versions.hummingbirdVersion
 import Dependencies.Versions.junit4Version
-import Dependencies.Versions.kotlinKtxVersion
+import Dependencies.Versions.androidCoreKtxVersion
 import Dependencies.Versions.kotlinVersion
 import Dependencies.Versions.kotlinXSerializationVersion
 import Dependencies.Versions.lifecycleVersion
@@ -25,7 +27,6 @@ import Dependencies.Versions.okhttpVersion
 import Dependencies.Versions.retrofitKotlinxSerializationVersion
 import Dependencies.Versions.retrofitVersion
 import Dependencies.Versions.roomVersion
-import Dependencies.Versions.securityCryptoVersion
 import Dependencies.Versions.timberVersion
 import Dependencies.Versions.turbineVersion
 
@@ -35,13 +36,11 @@ object Dependencies {
         val gradleVersion = "7.4.2"
         val kotlinVersion = "1.7.20"
 
-        val kotlinKtxVersion = "1.7.0"
-
+        val androidCoreKtxVersion = "1.7.0"
 
         // Android
         val appCompactVersion = "1.5.1"
         val lifecycleVersion = "2.6.0-alpha01"
-        val securityCryptoVersion = "1.1.0-alpha03"
 
 
         // Hilt
@@ -66,9 +65,6 @@ object Dependencies {
         // Navigation
         val navigationVersion = "2.5.1"
 
-        // Blockchain
-        val hummingbirdVersion = "1.6.6"
-
         // Network
         val moshiVersion = "1.11.0"
         val retrofitVersion = "2.9.0"
@@ -92,6 +88,7 @@ object Dependencies {
         val firebaseAnalyticsVersion = "21.2.1"
         val firebaseCrashlyticsVersion = "18.3.6"
         val crashlyticsGradleVersion = "2.9.4"
+        val assertKVersion = "0.25"
 
         // TESTING
 
@@ -101,10 +98,8 @@ object Dependencies {
         val androidTestJunitVersion = "1.1.4"
         val espressoVersion = "3.5.0"
         val turbineVersion = "0.12.3"
-
-        // TOOLS
-
-        val relayVersion = "0.3.02"
+        val coroutinesTestVersion = "1.6.4"
+        val archCoreTestingVersion = "2.2.0"
     }
 
 
@@ -112,7 +107,7 @@ object Dependencies {
 
     // ANDROID
 
-    val kotlinKtx = "androidx.core:core-ktx:$kotlinKtxVersion"
+    val androidCoreKtx = "androidx.core:core-ktx:$androidCoreKtxVersion"
     val appCompact = "androidx.appcompat:appcompat:$appCompactVersion"
     val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android$kotlinVersion"
 
@@ -160,9 +155,6 @@ object Dependencies {
     val composeNavigation = "androidx.navigation:navigation-compose:$navigationVersion"
     val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    // Blockchain
-    val hummingbird = "com.sparrowwallet:hummingbird:$hummingbirdVersion"
-
     val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
     val retrofitConverterMoshi = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
     val retrofitKotlinxSerializationConverter =
@@ -209,6 +201,9 @@ object Dependencies {
     val junit4 = "junit:junit:$junit4Version"
     val espressoCore = "androidx.test.espresso:espresso-core:$espressoVersion"
     val turbine = "app.cash.turbine:turbine:$turbineVersion"
+    val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
+    val archCoreTesting = "androidx.arch.core:core-testing:$archCoreTestingVersion"
+    val assertK = "com.willowtreeapps.assertk:assertk-jvm:$assertKVersion"
 
     // Mockito
     val mockitoAndroid = "org.mockito:mockito-android:$mockitoCoreVersion"
