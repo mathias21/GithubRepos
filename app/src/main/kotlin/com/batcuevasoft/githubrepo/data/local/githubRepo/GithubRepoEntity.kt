@@ -27,7 +27,11 @@ data class GithubRepoEntity(
     val language: String? = null
 ) {
     fun toGithubRepo(): GithubRepo {
-        val daysSinceUpdate = Interval(lastUpdateTimestamp, Date().time).toDuration().standardDays.toInt()
+        val daysSinceUpdate = try {
+            Interval(lastUpdateTimestamp, Date().time).toDuration().standardDays.toInt()
+        } catch (e: Exception) {
+            0
+        }
         return GithubRepo(
             id = id,
             name = name,

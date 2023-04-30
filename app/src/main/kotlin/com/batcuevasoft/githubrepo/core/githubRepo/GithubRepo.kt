@@ -1,5 +1,6 @@
 package com.batcuevasoft.githubrepo.core.githubRepo
 
+import com.batcuevasoft.githubrepo.data.local.githubRepo.GithubRepoEntity
 import java.util.Date
 
 data class GithubRepo(
@@ -14,7 +15,21 @@ data class GithubRepo(
     val forkCount: Int,
     val owner: RepoOwner,
     val language: String? = null
-)
+) {
+    fun toGithubRepoEntity() = GithubRepoEntity(
+        id = id,
+        name = name,
+        fullName = fullName,
+        description = description,
+        stars = starCount,
+        repoUrl = repoUrl,
+        forkCount = forkCount,
+        lastUpdateTimestamp = lastUpdateDate.time,
+        authorName = owner.name,
+        avatarUrl = owner.avatarUrl,
+        language = language
+    )
+}
 
 data class RepoOwner(
     val name: String,

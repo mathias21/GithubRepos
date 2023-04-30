@@ -6,6 +6,7 @@ import javax.inject.Inject
 
 interface GithubRepoRemoteDatasource {
     suspend fun fetchRepositories(): NetworkResponse<List<GithubRepoRemoteEntity>>
+    suspend fun fetchRepositories(query: String, perPage: Int, page: Int): NetworkResponse<GithubRepoPageResponse>
 }
 
 class GithubRepoRemoteDatasourceImpl @Inject constructor(
@@ -15,6 +16,12 @@ class GithubRepoRemoteDatasourceImpl @Inject constructor(
     override suspend fun fetchRepositories(): NetworkResponse<List<GithubRepoRemoteEntity>> {
         return tryNetworkSuspending {
             githubApi.getUserRepositories(USERNAME)
+        }
+    }
+
+    override suspend fun fetchRepositories(query: String, perPage: Int, page: Int): NetworkResponse<GithubRepoPageResponse> {
+        return tryNetworkSuspending {
+            githubApi.getRepositories(query, perPageCount = perPage, page = page)
         }
     }
 

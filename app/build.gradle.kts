@@ -99,6 +99,9 @@ dependencies {
     implementation(Dependencies.room)
     implementation(Dependencies.roomKtx)
     kapt(Dependencies.roomCompiler)
+    implementation(Dependencies.roomPaging) {
+        exclude("org.jetbrains.kotlin")
+    }
 
     implementation(Dependencies.timber)
 
@@ -109,6 +112,10 @@ dependencies {
     implementation(Dependencies.firebaseCrashlyticsKtx)
 
     implementation(Dependencies.jodaTime)
+
+    implementation(Dependencies.androidPagingCompose) {
+        exclude("org.jetbrains.kotlin")
+    }
 
     // Testing
     testImplementation(Dependencies.junit4)

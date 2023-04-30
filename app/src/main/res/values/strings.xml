@@ -8,4 +8,5 @@
     <string name="go_to_repository_url_button">Visit repo</string>
     <string name="unknown_language">Unknown language</string>
     <string name="empty_repo_list_title">No Repos found</string>
+    <string name="github_loading_error">Error. Possible quota limit</string>
 </resources>

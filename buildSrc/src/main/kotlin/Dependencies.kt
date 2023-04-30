@@ -15,6 +15,7 @@ import Dependencies.Versions.hiltVersion
 import Dependencies.Versions.httpInterceptorVersion
 import Dependencies.Versions.junit4Version
 import Dependencies.Versions.androidCoreKtxVersion
+import Dependencies.Versions.androidPagingComposeVersion
 import Dependencies.Versions.kotlinVersion
 import Dependencies.Versions.kotlinXSerializationVersion
 import Dependencies.Versions.lifecycleVersion
@@ -24,6 +25,7 @@ import Dependencies.Versions.mockitoKotlinVersion
 import Dependencies.Versions.moshiVersion
 import Dependencies.Versions.navigationVersion
 import Dependencies.Versions.okhttpVersion
+import Dependencies.Versions.pagingVersion
 import Dependencies.Versions.retrofitKotlinxSerializationVersion
 import Dependencies.Versions.retrofitVersion
 import Dependencies.Versions.roomVersion
@@ -74,6 +76,9 @@ object Dependencies {
 
         val kotlinXSerializationVersion = "1.4.0"
 
+        val androidPagingComposeVersion = "1.0.0-alpha18"
+        val pagingVersion = "3.1.1"
+
         val roomVersion = "2.4.3"
         val dateTimeVersion = "0.4.0"
         val mpChartsVersion = "v3.1.0"
@@ -88,7 +93,6 @@ object Dependencies {
         val firebaseAnalyticsVersion = "21.2.1"
         val firebaseCrashlyticsVersion = "18.3.6"
         val crashlyticsGradleVersion = "2.9.4"
-        val assertKVersion = "0.25"
 
         // TESTING
 
@@ -100,6 +104,7 @@ object Dependencies {
         val turbineVersion = "0.12.3"
         val coroutinesTestVersion = "1.6.4"
         val archCoreTestingVersion = "2.2.0"
+        val assertKVersion = "0.25"
     }
 
 
@@ -168,10 +173,14 @@ object Dependencies {
     val kotlinXSerialization =
         "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinXSerializationVersion"
 
+    val androidPagingCompose = "androidx.paging:paging-compose:$androidPagingComposeVersion"
+    val paging = "androidx.paging:paging-runtime:$pagingVersion"
+
     // ROOM
     val room = "androidx.room:room-runtime:$roomVersion"
     val roomKtx = "androidx.room:room-ktx:$roomVersion"
     val roomCompiler = "androidx.room:room-compiler:$roomVersion"
+    val roomPaging = "androidx.room:room-paging:$roomVersion"
 
     val timber = "com.jakewharton.timber:timber:$timberVersion"
 

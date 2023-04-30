@@ -13,6 +13,8 @@ import com.batcuevasoft.githubrepo.data.remote.CommonInterceptor
 import com.batcuevasoft.githubrepo.data.remote.githubRepo.GithubRepoRemoteDatasource
 import com.batcuevasoft.githubrepo.data.remote.githubRepo.GithubRepoRemoteDatasourceImpl
 import com.batcuevasoft.githubrepo.BuildConfig
+import com.batcuevasoft.githubrepo.data.local.remoteKeys.RemoteKeyLocalDatasource
+import com.batcuevasoft.githubrepo.data.local.remoteKeys.RemoteKeyLocalDatasourceImpl
 import com.batcuevasoft.githubrepo.data.remote.githubRepo.GithubApi
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.squareup.moshi.Moshi
@@ -47,6 +49,9 @@ object GithubRepoAppModule {
 
         @Binds
         fun bindGithubRepoRemoteDatasource(implementation: GithubRepoRemoteDatasourceImpl): GithubRepoRemoteDatasource
+
+        @Binds
+        fun bindRemoteKeyLocalDatasource(implementation: RemoteKeyLocalDatasourceImpl): RemoteKeyLocalDatasource
 
         @Binds
         fun bindDispatcherProvider(implementation: DispatcherProviderImp): DispatcherProvider

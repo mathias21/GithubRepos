@@ -1,5 +1,6 @@
 package com.batcuevasoft.githubrepo.data.local.githubRepo
 
+import androidx.paging.PagingSource
 import com.batcuevasoft.githubrepo.data.local.GithubRepoDatabase
 import kotlinx.coroutines.flow.Flow
 import java.util.Date
@@ -22,6 +23,8 @@ interface GithubRepoLocalDatasource {
         language: String? = null
     ): GithubRepoEntity
 
+    suspend fun getAll(): List<GithubRepoEntity>
+    fun getPagingSource(): PagingSource<Int, GithubRepoEntity>
     suspend fun getGithubRepoEntityById(id: Long): GithubRepoEntity?
     fun getGithubRepoEntityFlowById(id: Long): Flow<GithubRepoEntity?>
     suspend fun removeGithubRepoEntityById(id: Long)
@@ -62,6 +65,14 @@ class GithubRepoLocalDatasourceImpl @Inject constructor(
         )
         val id = dao.insertGithubRepoEntity(entity)
         return entity.copy(id = id)
+    }
+
+    override suspend fun getAll(): List<GithubRepoEntity> {
+        return dao.all()
+    }
+
+    override fun getPagingSource(): PagingSource<Int, GithubRepoEntity> {
+        return dao.pagingSource()
     }
 
     override suspend fun getGithubRepoEntityById(id: Long): GithubRepoEntity? {

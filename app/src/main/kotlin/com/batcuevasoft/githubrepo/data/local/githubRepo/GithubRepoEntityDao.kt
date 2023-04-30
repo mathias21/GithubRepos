@@ -1,5 +1,6 @@
 package com.batcuevasoft.githubrepo.data.local.githubRepo
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -8,6 +9,12 @@ interface GithubRepoEntityDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertGithubRepoEntity(entry: GithubRepoEntity): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(users: List<GithubRepoEntity>)
+
+    @Query("SELECT * FROM $GITHUB_REPO_ENTITY_TABLE order by stars desc")
+    fun pagingSource(): PagingSource<Int, GithubRepoEntity>
 
     @Query("Select * from $GITHUB_REPO_ENTITY_TABLE")
     suspend fun all(): List<GithubRepoEntity>
@@ -26,4 +33,7 @@ interface GithubRepoEntityDao {
 
     @Delete
     fun removeGithubRepoEntity(githubRepoEntity: GithubRepoEntity)
+
+    @Query("DELETE FROM $GITHUB_REPO_ENTITY_TABLE")
+    suspend fun clearAll()
 }

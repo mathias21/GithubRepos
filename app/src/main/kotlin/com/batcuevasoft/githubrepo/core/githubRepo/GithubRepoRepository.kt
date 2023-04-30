@@ -1,6 +1,12 @@
 package com.batcuevasoft.githubrepo.core.githubRepo
 
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.batcuevasoft.githubrepo.data.local.githubRepo.GithubRepoLocalDatasource
+import com.batcuevasoft.githubrepo.data.local.remoteKeys.RemoteKeyLocalDatasource
 import com.batcuevasoft.githubrepo.data.remote.NetworkResponse
 import com.batcuevasoft.githubrepo.data.remote.githubRepo.GithubRepoRemoteDatasource
 import kotlinx.coroutines.flow.Flow
@@ -10,14 +16,29 @@ import javax.inject.Inject
 
 
 interface GithubRepoRepository {
+    val githubRepoPagingSource: Flow<PagingData<GithubRepo>>
     val githubRepoListFlow: Flow<List<GithubRepo>>
     fun getGithubRepoFlowById(repoId: Long): Flow<GithubRepo?>
 }
 
+@OptIn(ExperimentalPagingApi::class)
 class GithubRepoRepositoryImpl @Inject constructor(
     private val githubRepoEntityLocalDatasource: GithubRepoLocalDatasource,
     private val githubRepoRemoteDatasource: GithubRepoRemoteDatasource,
+    private val remoteKeyLocalDatasource: RemoteKeyLocalDatasource
 ) : GithubRepoRepository {
+
+    override val githubRepoPagingSource: Flow<PagingData<GithubRepo>> = Pager(
+            config = PagingConfig(pageSize = 8),
+            remoteMediator = GithubRemoteMediator(
+                query = "Android",
+                githubRepoRemoteDatasource,
+                remoteKeyLocalDatasource
+            ),
+            pagingSourceFactory = { githubRepoEntityLocalDatasource.getPagingSource() }
+        ).flow.map {
+            it.map { it.toGithubRepo() }
+    }
 
     override val githubRepoListFlow: Flow<List<GithubRepo>> = githubRepoEntityLocalDatasource.flow.map {
             it.map { it.toGithubRepo() }
